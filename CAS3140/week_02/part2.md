@@ -19,4 +19,6 @@
 - Want the qubits to not interact with env
 - But except when controlling and measuring; contradiction
 
-Shrodinger(?)'s cat
+## Shrodinger(?)'s cat
+dead and alive at same time -> superposition
+open the box -> Measurement

@@ -13,7 +13,7 @@ Different paradigm -> uses quantum properties (superposition, entaglement, inter
 originated from quantum mech simulation -> classical comp was too hard
 
 # Error correction
-quantum computers are prone to errors -> QEC proof of consepts made in 2025
+quantum computers are prone to errors -> QEC proof of concepts made in 2025
 
 use quantum centric supercomputing -> switch using qc and cc; lower the error rate
 
