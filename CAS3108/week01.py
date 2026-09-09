@@ -3,7 +3,7 @@ Problem: Given an integer sequence, find the maximum sum of contiguous subsequen
 Empty subsequence is possible, and the sum is 0.
 """
 
-def naive_solution(arr):
+def qubic_solution(arr):
     """
     naive solution
     time complexity: O(n^3)
@@ -20,7 +20,7 @@ def naive_solution(arr):
 
     return sol
 
-def n2_solution(arr):
+def quadratic_solution(arr):
     """
     slightly modified solution
     saves the summations of other cases
@@ -80,6 +80,20 @@ def div_conquer_solution(arr):
 
         return sol
 
+def linear_solution(arr):
+    """
+    linear-time O(n) solution
+    """
+    if len(arr) == 0:
+        return 0
+    sol = [0 for _ in range(len(arr))]
+    sol[0] = max(arr[0], 0)
+    for index in range(1, len(arr)):
+        if sol[index - 1] + arr[index] < 0:
+            sol[index] = 0
+        else:
+            sol[index] = sol[index - 1] + arr[index]
+    return max(sol)
 
 def main():
     test_cases = [
@@ -98,10 +112,10 @@ def main():
 
     for arr in test_cases:
         print(f"array: {arr}")
-        print(f"{"naive:":<22}{naive_solution(arr)}")
-        print(f"{"n2:":<22}{n2_solution(arr)}")
+        print(f"{"naive:":<22}{qubic_solution(arr)}")
+        print(f"{"n2:":<22}{quadratic_solution(arr)}")
         print(f"{"divide and conquer:":<22}{div_conquer_solution(arr)}")
-        print()
+        print(f"{"linear:":<22}{linear_solution(arr)}")
 
 if __name__ == "__main__":
     main()
