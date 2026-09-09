@@ -21,4 +21,17 @@
 
 ## Shrodinger(?)'s cat
 dead and alive at same time -> superposition
-open the box -> Measurement
+open the box -> Measurement: the quantum state collapses
+
+슬라이드 24의 1/sqrt(2) -> probability amplitude
+norm을 구할 시 확률이 나온다.
+
+## Decoherence
+Information leak -> no quantum states in macroscopic world
+
+# Quantum Computing Models
+- Quantum Turing Machines
+- Qunatum Circuits -> Dominant
+
+Computational capabilities compared to Turing machines is a contest boundary now.
+
