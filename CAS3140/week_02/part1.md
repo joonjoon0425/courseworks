@@ -1,4 +1,4 @@
-# quantum supremacy (quantum adcantage)
+# quantum supremacy (quantum advantage)
 quantum computer surpass the classical computer
 
 big prob which classical comp cannot check but quatum can -> ??

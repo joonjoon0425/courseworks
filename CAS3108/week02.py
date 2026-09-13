@@ -122,7 +122,10 @@ def naive(points):
                 sol3 = d
     return min(sol1, sol2, sol3)
 
-def divide_conquer(points):
+def divide_conquer1(points):
+    """
+    O(n(logn)^2). For O(nlogn), we change the timing of sorting about y coordinates.
+    """
     def recursion(sorted_points):
         # base cases
         if len(sorted_points) == 2:
@@ -158,11 +161,56 @@ def divide_conquer(points):
     # sort about x coordinates
     sorted_points = sorted(points, key=lambda p: p[0])
     return recursion(sorted_points)
-    
+
+def divide_conquer2(points):
+    """
+    O(nlogn)
+    """
+    # put indices
+    indiced_points = []
+    for i, p in enumerate(points):
+        indiced_points.append([*p, i])
+    def recursion(sorted_points_x, sorted_points_y):
+        # base cases
+        if len(sorted_points_x) == 2:
+            return dist(sorted_points_x[0], sorted_points_x[1])
+        if len(sorted_points_x) == 3:
+            return min(dist(sorted_points_x[0], sorted_points_x[1]), dist(sorted_points_x[1], sorted_points_x[2]), dist(sorted_points_x[2], sorted_points_x[0]))
+
+        n = len(sorted_points_x) // 2
+        # find solutions from left and right subsets
+        lx = sorted_points_x[:n]
+        ly = [indiced_points[p[2]] for p in lx]
+        rx = sorted_points_x[n:]
+        ry = [indiced_points[p[2]] for p in ly]
+        delta0 = recursion(lx, ly)
+        delta1 = recursion(rx, ry)
+        # now we examine the strip (x - delta, x + delta)
+        delta = min(delta0, delta1)
+        x = lx[-1][0]
+        strip = []
+        for point in sorted_points_y:
+            if x - delta < point[0] < x + delta:
+                strip.append(point)
+
+        sol = math.inf
+        for i in range(len(strip)):
+            k = 12 if i + 11 < len(strip) else len(strip) - i
+            for j in range(1, k):
+               if sol > dist(strip[i], strip[i + j]):
+                   sol = dist(strip[i], strip[i + j])
+        
+        return min(delta, sol)
+    # sort about x coordinates
+    sorted_points_x = sorted(indiced_points, key=lambda p: p[0])
+    # sort about y coordinates
+    sorted_points_y = sorted(indiced_points, key=lambda p: p[1])
+    return recursion(sorted_points_x, sorted_points_y)
 
 if __name__ == "__main__":
     for test_case in test_cases:
         sol1 = naive(test_case)
-        sol2 = divide_conquer(test_case)
-        print(f"naive: {str(sol1):<25} div_conq: {str(sol2):<25} equals: {sol1 == sol2}")
+        sol2 = divide_conquer1(test_case)
+        sol3 = divide_conquer2(test_case)
+        print(f"naive: {str(sol1):<25} div_conq1: {str(sol2):<25} div_conq2: {str(sol3):<25} equals: {sol1 == sol2 and sol2 == sol3}")
 
