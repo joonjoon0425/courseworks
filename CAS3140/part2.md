@@ -35,3 +35,22 @@ Information leak -> no quantum states in macroscopic world
 
 Computational capabilities compared to Turing machines is a contest boundary now.
 
+## Quantum Circuit
+Unitary -> inversible (complex matrices)
+- no control flow
+- no fan-in: (irreversible), classical or is not possible
+- no fan-out: (no-cloning theorem), allowing so wuold require to copy a qubit
+
+Quantum Computer is probabilistic -> may have to pass the input many times to get the desired output with adequate error tolerance
+
+Kronecker Multiplication (Hadamard * 2)
+
+Quantum computer can simulate classical computer -> All classical algorithms can be converted to quantum algorithms
+
+## Algorithms
+Deterministic & Probabilisitc
+- Deterministic
+    - gives the answer with only one run
+- Probabilisitc
+    - May yield an incorrect answer
+    - Must be run several times
