@@ -182,7 +182,7 @@ def divide_conquer2(points):
         lx = sorted_points_x[:n]
         ly = [indiced_points[p[2]] for p in lx]
         rx = sorted_points_x[n:]
-        ry = [indiced_points[p[2]] for p in ly]
+        ry = [indiced_points[p[2]] for p in rx]
         delta0 = recursion(lx, ly)
         delta1 = recursion(rx, ry)
         # now we examine the strip (x - delta, x + delta)

@@ -18,3 +18,5 @@ im(y, x, k): row y, column x, channel k
 transpose: `v'`
 
 Just practice MATLAB on your own.
+
+Inner products -> can represent the similarity of two vectors
