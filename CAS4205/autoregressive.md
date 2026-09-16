@@ -22,4 +22,14 @@ Sampling이 바로 Generate하는 것.
 한계점은 결국 linear model이라는 것
 
 ## NADE: Neural Autoregressive Density Estimation
-linear input 말고 one layer neural network를 사용한다. 그런데 parameter 개수가 d^2이 되어버려서 비효율적 -> parameter sharing; 이전 함수의 parameter들을 그대로 쓴다.
+linear input 말고 one layer neural network를 사용한다. 그런데 parameter 개수가 d^2이 되어버려서 비효율적 -> parameter sharing; 이전 함수의 parameter들을 공유해서 사용한다.
+
+문제점: training을 할 때 (d pixels에 대해) forward를 d번 반복해야 함.
+
+## MADE: Masked Autoencoder for Distribution Estimation
+그 문제점을 해결하려고 나온 모델.
+i번쨰 hidden unit에는 0부터 i번째 입력까지만 관여한다. 앞이 뒤에 관여 못하게.
+Weight mask를 적용한다.
+
+시험 문제에 뭐 dimesion이 뭐냐, shape이 뭐냐 출제할 수 있다고 하심.
+
