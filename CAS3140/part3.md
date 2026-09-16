@@ -14,3 +14,17 @@ One slit open + One slit open != Two slit open !
 - Probablilties: amplitudes $`\in \mathbb{C}`$; the norm of amplitude must equal 1
 - Sequence in independent setps -> mult amplitudes
 - Happen in several alternative ways -> add amplitudes
+
+$`p = |\alpha|^2 = p_1 + p_2 + 2 \sqrt{p_1p_2}\cos(\phi_2 - \phi_1)`$
+where $`\alpha_i = |\alpha_i|e^{\phi_i}`$
+the term with cosine is called 'interference term'
+
+# Waves
+## Diffraction
+회절
+## Interference
+간섭
+- 증폭
+- 상쇄
+## Wave-particle duality
+Every particle or quantum entitiy may be described as either a wave or a particle.
