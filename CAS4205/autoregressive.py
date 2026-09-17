@@ -2,7 +2,7 @@ import numpy as np
 
 class FVSBN:
     def __init__(self, dim):
-        # w will be a upper-triangulaer matrix
+        # w will be a upper-trianguler matrix
         self.w = np.zeros((dim, dim))
         self.b = np.zeros((dim,))
         # why masking the (0, 0) too? -> the bias fills in the place of w_1 
@@ -34,7 +34,8 @@ class FVSBN:
 
 
 class MADE:
-    pass
+    def __init__(self, dim, n_hidden):
+        pass
     
 if __name__ == "__main__":
     a = FVSBN(3)
