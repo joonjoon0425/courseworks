@@ -1,14 +1,10 @@
 import math, time
 
-CITY_NUM = 25  # C_0부터 C_24까지
+N = 8 # there are n + 1 cities: C[0] to C[n]
 
-DIST = [1] * 24
-
-# 출발지와 목적지는 숙박비 0, 나머지는 모두 1
-PRICE = [0] + [1] * 23 + [0]
-
-MAX_DIST = 5
-
+DIST = [2, 3, 1, 9, 8, 3, 5, 7] # DIST[i] is the distance from C[i] to C[i + 1]
+PRICE = [0, 2, 5, 9, 2, 7, 3, 4, 0] # PRICE[i] is the price for C[i]; The first and last must be 0
+MAX_DIST = 9
 
 def best_sch_no_memo(n):
     """
@@ -45,7 +41,7 @@ def best_sch_memo(n):
         memo[n] = sol
         return sol
     
-    memo = [-1 for _ in range(CITY_NUM)]
+    memo = [-1 for _ in range(n + 1)]
     memo[0] = 0
 
     return inner(n, memo)
@@ -53,22 +49,34 @@ def best_sch_memo(n):
 def best_sch_dp(n):
     """
     Return the cheapest expense from C_0 to C_n
-    Uses memoization
-    memo[k] -> cheapest expense from C_0 to C_k
+    Dynamic Programming
+    dp[k] -> cheapest expense from C_0 to C_k
     """
+    dp = [math.inf] * (n + 1)
+    dp[0] = 0
+    for k in range(1, n + 1):
+        m = math.inf
+        dist = 0
+        for i in reversed(range(k)):
+            # dist는 C_i부터 C_k까지의 거리 합
+            dist += DIST[i]
+            if dist <= MAX_DIST:
+                m = min(m, dp[i])
+        dp[k] = m + PRICE[k]
+    return dp[n]
 
 
 if __name__ == "__main__":
     start = time.perf_counter()
-    sol1 = best_sch_no_memo(CITY_NUM - 1)
+    sol1 = best_sch_no_memo(N)
     no_memo_time = time.perf_counter() - start
 
     start = time.perf_counter()
-    sol2 = best_sch_memo(CITY_NUM - 1)
+    sol2 = best_sch_memo(N)
     memo_time = time.perf_counter() - start
 
     start = time.perf_counter()
-    sol3 = best_sch_dp(CITY_NUM - 1)
+    sol3 = best_sch_dp(N)
     dp_time = time.perf_counter() - start
 
     print(f"without memoization: {sol1}, {no_memo_time:.6f}s")
