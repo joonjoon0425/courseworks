@@ -32,4 +32,3 @@ i번쨰 hidden unit에는 0부터 i번째 입력까지만 관여한다. 앞이 �
 Weight mask를 적용한다.
 
 시험 문제에 뭐 dimesion이 뭐냐, shape이 뭐냐 출제할 수 있다고 하심.
-

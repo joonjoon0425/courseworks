@@ -31,11 +31,6 @@ class FVSBN:
             self.w -= lr * dw
             self.b -= lr * db
         return self
-
-
-class MADE:
-    def __init__(self, dim, n_hidden):
-        pass
     
 if __name__ == "__main__":
     a = FVSBN(3)
