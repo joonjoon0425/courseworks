@@ -28,3 +28,7 @@ the term with cosine is called 'interference term'
 - 상쇄
 ## Wave-particle duality
 Every particle or quantum entitiy may be described as either a wave or a particle.
+
+# Qubits
+- basis: $`\ket 0, \ket 1`$
+- $`\ket{\phi} = \alpha\ket{0} + \beta\ket{1}`$ where $`\alpha,\beta \in \mathcal{C}`$ and $`\|\alpha\|^2 + \|\beta\|^2 = 1`$.

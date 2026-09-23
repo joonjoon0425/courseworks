@@ -32,3 +32,31 @@ i번쨰 hidden unit에는 0부터 i번째 입력까지만 관여한다. 앞이 �
 Weight mask를 적용한다.
 
 시험 문제에 뭐 dimesion이 뭐냐, shape이 뭐냐 출제할 수 있다고 하심.
+
+## RNN: Recurrent Nerual Network
+hidden state를 input에 넣어줘서 과거 상태를 기억
+- $`a_t = W_x x_t + W_h h_{t-1}`$
+- $`h_t = \tanh(a_t)`$
+- $`y_t = W_oh_t`$
+
+### PixelRNN
+Hidden state를 직전 입력이 아니라 위 옆으로부터 받아옴 (Raster scanning order)
+#### RNN 문제점
+- Sequential Generation for training and inference (시간이 오래 걸림)
+- hidden state가 이전의 모든 정보를 보존하는게 사실상 어려움
+- exploding/vanishing grads
+    - hidden unit의 gradient가 W_h의 반복된 곱으로 표현된다.
+    - 최대 고윳값이 1보다 작으면 소실, 1보다 크면 폭발
+
+## CNN
+### WaveNet
+1-D convolution을 여러 개 쌓아 올려서 receptive field를 늘린다
+- 선형적으로 늘어난다. -> dilation을 exponential하게 적용해서 팍팍늘림
+- autoregressiveness를 보존하기 위해 현재 이전의 값들에만 convolution 적용. (일반 CNN과 다르게.)
+
+### PixelCNN
+- Masked convolution을 사용한다.
+
+- (impl detail) Conv1D(C, 1, 1) 는 그냥 linear layer와 같음
+
+## Masked Attention

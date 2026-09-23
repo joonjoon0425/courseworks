@@ -220,3 +220,5 @@ __marimo__/
 # For MADE
 MADE/
 data/
+# For 수업 자료
+autoregressive_models/

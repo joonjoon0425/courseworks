@@ -75,3 +75,9 @@ What about the values near the egde? Several methods exists
 - wrap around -> take the opposite side of the piture and attach it
 - copy edge -> copy edge
 - reflect across edge -> put a mirror!
+
+## Separabiltiy
+Some filters can be factorized.
+
+## Application: Hybrid Images
+Gaussian filtered image + Laplacian filtered image
