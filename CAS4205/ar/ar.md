@@ -60,3 +60,8 @@ Hidden state를 직전 입력이 아니라 위 옆으로부터 받아옴 (Raster
 - (impl detail) Conv1D(C, 1, 1) 는 그냥 linear layer와 같음
 
 ## Masked Attention
+
+### KV Cache
+key값과 value를 저장해둔다. 반복 계산을 피하는 대신 메모리를 많이 사용. KV Cache의 압축도 여러 방법이 있음.
+
+자세한 건 직접 구현하면서 알아보자.
