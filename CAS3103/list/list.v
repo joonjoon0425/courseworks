@@ -228,3 +228,27 @@ Proof.
     - simpl. reflexivity.
     - simpl. rewrite rev_dist. rewrite IH. simpl. reflexivity.
 Qed.
+
+(* natoption, which contains a nat type or nothing *)
+(* Rust의 Option<T>랑 똑같다 *)
+Inductive natoption : Type :=
+    | Some (n : nat)
+    | None.
+
+(* head를 좀 더 자연스럽게 바꿀 수 있다. (기존 것은 default값을 반환하게 만들어져 있었다.) *)
+Definition hd (l : natlist) : natoption :=
+    match l with
+    | nil => None
+    | h :: t => Some h
+    end.
+
+(* option에서 값을 가져오는 함수 *)
+Definition from_option (default : nat) (opt : natoption) : nat :=
+    match opt with
+    | Some n => n
+    | None => default
+    end.
+
+Compute hd [1; 2; 3].
+Compute hd [].
+Compute from_option 0 (hd [1; 2; 3]).

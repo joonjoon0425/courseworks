@@ -10,13 +10,13 @@ def LNDS(arr):
     dp[0] = 1
     for k in range(len(arr)):
         m = 0
-        for i in reversed(range(k)):
+        for i in range(k):
             if arr[i] <= arr[k]:
                 m = max(m, dp[i])
         dp[k] = m + 1
     return max(dp)
 
 if __name__ == "__main__":
-    arr = [-3,-1,-1,0,-2,5]
+    arr = [2, 1, 2, 4, 5, 3]
     sol = LNDS(arr)
     print(sol)
