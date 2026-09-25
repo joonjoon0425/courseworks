@@ -217,8 +217,9 @@ __marimo__/
 # Streamlit
 .streamlit/secrets.toml
 
-# For MADE
-MADE/
+# For ar
+made/
+rnn/
 data/
 # For 수업 자료
 autoregressive_models/
