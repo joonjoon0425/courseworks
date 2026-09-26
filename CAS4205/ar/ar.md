@@ -1,8 +1,13 @@
 # Curse of Dimensionality
 차원이 커지면 커질수록 parameter들 개수가 급격히 많아진다. -> 감당 불가
 # Autoregressive Models
-Chain rule을 사용해서 차원의 저주를 회피?; $`p(x)=p(x_1)p(x_2|x_1)p(x_3|x_1,x_2)\cdots p(x_d|x_1,\dots, x_{d-1})`$  
+Chain rule을 사용해서 차원의 저주를 회피?; $`p(x)=p(x_1)p(x_2|x_1)p(x_3|x_1,x_2)\cdots p(x_d|x_1,\dots, x_{d-1})`$
+-> 착각하면 안 되는 게, Chain rule이 모델이 배울 수 있는 구조를 제한하는 게 아니다. 모든 확률 분포는 chain rule로 분해 가능하다.
 조건부 확률에 특정 조건이 걸리면 naive한 표현보다 파라미터 개수를 팍 줄일 수 있다. eg. Markov Property
+
+생성에 유리한 이유
+- 이전 토큰만 필요로 하므로 이전 토큰만 생성하면 그 다음 토큰을 만들 수 있다. 미래 토큰이 필요하면 미래의 것을 미리 생성해 둬야 한다. 대가는 순차적 샘플링.
+- 정확한 liklihood가 보장된다. 항상 분해 가능하기 때문.
 
 ## Fully visible sigmoid belif network
 각 conditional distribution을 (sigmoid) 함수로 만들고 그 함수의 paramter를 조정. Slide 참조할 것.
@@ -65,3 +70,8 @@ Hidden state를 직전 입력이 아니라 위 옆으로부터 받아옴 (Raster
 key값과 value를 저장해둔다. 반복 계산을 피하는 대신 메모리를 많이 사용. KV Cache의 압축도 여러 방법이 있음.
 
 자세한 건 직접 구현하면서 알아보자.
+- 구현해 보았다. KV Cache가 유용한 이유는 샘플링할 때 계속 같은 값을 계산하게 되기 때문이다.
+- 이전 토큰들을 넣어서 다음 토큰을 예측하고 그걸 이어붙이는 과정을 반복하는데, 이 이전 토큰들은 변하지 않는다.
+- 즉, 이전 토큰들에 대한 K, V가 계속 계산되고, 심지어 query는 이전 query가 필요 없는데도 계속 계산된다.
+- 그래서 query는 저장하지 않고, K와 V를 이전 토큰들에 대해 저장해 둔다.
+- 이는 masked이기 때문에 가능한 구조이다. masked가 아니라면 token이 추가될 때마다 행렬 값이 바뀐다.

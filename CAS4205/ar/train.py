@@ -8,10 +8,11 @@ from tqdm import tqdm
 from dataclasses import dataclass
 from made import MADE
 from rnn import MyRNNBlock
+from transformer import BinaryTransformer
 
 # hyperparameters and configurations
 DATASET_PATH = "./data"
-MODEL_NAME = "rnn"
+MODEL_NAME = "transformer"
 SAMPLE_PATH = f"./{MODEL_NAME}/sample"
 MODEL_PATH = f"./{MODEL_NAME}/model"
 
@@ -27,6 +28,11 @@ class Config:
     # rnn
     d_hidden = 128
     n_layers = 2
+
+    # transformer
+    n_heads = 4
+    n_blocks = 3
+    transformer_d_model = 128
 
 def to_binary(img):
     """
@@ -120,6 +126,8 @@ if __name__ == "__main__":
         model = MADE(cfg)
     elif MODEL_NAME == "rnn":
         model = MyRNNBlock(cfg)
+    elif MODEL_NAME == "transformer":
+        model = BinaryTransformer(cfg)
     train_loader, test_loader = get_dataloader(cfg)
 
     model.to(cfg.device)
