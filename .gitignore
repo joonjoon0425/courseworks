@@ -222,5 +222,6 @@ made/
 rnn/
 transformer/
 data/
+outputs/
 # For 수업 자료
 model/
