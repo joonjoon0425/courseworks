@@ -252,3 +252,11 @@ Definition from_option (default : nat) (opt : natoption) : nat :=
 Compute hd [1; 2; 3].
 Compute hd [].
 Compute from_option 0 (hd [1; 2; 3]).
+
+Example symm_in_h : forall (a b : nat),
+    true = (a =? b) -> (a =? b) = true.
+Proof.
+    intros a b H.
+    symmetry in H.
+    exact H.
+Qed.

@@ -15,7 +15,7 @@ class Config:
 
     # Training
     epochs: int = 20
-    batch_size: int = 128
+    batch_size: int = 256
     lr: float = 1e-3
 
     # Model
