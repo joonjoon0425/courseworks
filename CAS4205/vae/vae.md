@@ -17,3 +17,17 @@
         - latent vector의 각 원소는 독립을 가정 ($`\mathcal{N}(0,I)`$).
     - $`\sigma`$는 보통 $`\exp{l/2}`$처럼 무조건 양수가 나오게 할 수 있다.
         - 덤으로 KL loss 계산 시 log variance가 공짜
+
+# ELBO and Amortized Variational Inference
+Latent variable의 확률분포 추론
+- example1: biased coin -> 어떤 동전을 던졌는지 알려주지 않는다.
+- example2: 두 gaussian이 주어졌고, 어떤 샘플이 주어졌을 때, 샘플이 어느 gaussian에서 나왔을까?
+- Harder Example:
+    - Given the features, and we have the noisy image.
+    - Which combination of the features built the image?.
+    - features are all fixed and has bernoulli prior p(z)=0.5
+    - The problem is that it is too hard to compute the normalization constant of posterior distribution.
+        - We use amortized variational inference here.
+        - Choose a simple distribution $`q(z)`$, which will be optimized to resemble $`p(z|x)`$.
+        - 여기서 q와 p의 KL divergence $`KL[q(z) \| p(z|x)]`$를 최소화 할 때 나오는 $`\mathbb{E}[\log{p(x|z)p(z) - \log{q(z)}}]`$ ELBO라고 한다.
+        
