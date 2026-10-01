@@ -31,3 +31,22 @@
     - examples of interest point
         - corner
         - blob
+### Corner
+- Shifting in any direction gives a big change in intensity.
+    - Flat region won't give any change
+    - Edge would give only the change in one direction
+    - Corner gives change to all direction
+- Harris Detector
+    - Window-averaged squared change of intensity
+    - $`E(u, v)=\sum_{row-k}^{row+k}\sum_{j=col-k}^{col+k}[I(i + u, j+ v)-I(i, j)]^2`$. Here, window size is 2k+1 and the matrix E is called Energy matrix -> window size와 같은.
+    - 그냥 주어진 candidate (row, col)에 대해 주변에서 window 흔들어보고 기존 intensity와의 차이를 제곱한 것의 총합.
+    - Autocorrelation surface의 근사
+    - $`E(u,v)=[u,v]M\begin{bmatrix}u // v\end{bmatrix}`$ where M is image derivative.
+    - Measure of corner reponse: R = det M - k (trac M)^2
+        - det M = M의 두 eigenvalue 곱
+        - trace M = M의 두 eigenvalue 합
+        - k는 0.04에서 0.06 사이의 값
+    - Non maximum supression window? What is it
+### Properties: Invariance and Covariance
+- Invariance: f(transformed x) = f(x)
+- Convariance: f(transformed x) = transformed f(x)
